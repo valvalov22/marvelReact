@@ -15,7 +15,6 @@ const MainPage = () => {
         setChar(id);
     }
 
-
     return (
         <>
             <ErrorBoundary>
