@@ -31,10 +31,10 @@ const CharList = (props) => {
             ended = true;
         }
 
-        setCharList(charList => [...charList, ...newCharList]);
-        setNewItemLoading(newItemLoading => false);
-        setOffset(offset => offset + 9);
-        setCharEnded(charEnded => ended);
+        setCharList([...charList, ...newCharList]);
+        setNewItemLoading(false);
+        setOffset(offset + 9);
+        setCharEnded(ended);
     }
 
     const itemRefs = useRef([]);
