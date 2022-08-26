@@ -5,6 +5,7 @@ import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import useMarvelService from '../../services/MarvelService';
 import './charList.scss';
+import { Transition } from 'react-transition-group';
 
 const CharList = (props) => {
 

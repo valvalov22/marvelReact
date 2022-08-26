@@ -1,27 +1,25 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import PropTypes from 'prop-types';
-import useMarvelService from '../../services/MarvelService';
-import Spinner from '../spinner/Spinner';
-import ErrorMessage from '../errorMessage/ErrorMessage';
+import useMarvelService from '../../../services/MarvelService';
+import Spinner from '../../spinner/Spinner';
+import ErrorMessage from '../../errorMessage/ErrorMessage';
+import AppBanner from '../../appBanner/AppBanner';
+import './singleComicLayout.scss';
 
-import './singleComicPage.scss';
-import AppBanner from '../appBanner/AppBanner';
-
-const SingleComicPage = () => {
+const SingleComicLayout = () => {
     const {comicId} = useParams();
     const [comic, setComic] = useState(null);
     const {loading, error, getComic, clearError} = useMarvelService();
 
     useEffect(() => {
-        updateComic();
+        updateComic()
     }, [comicId])
 
     const updateComic = () => {
         clearError();
         getComic(comicId)
-            .then(onComicLoaded);
+            .then(onComicLoaded)
     }
 
     const onComicLoaded = (comic) => {
@@ -30,7 +28,7 @@ const SingleComicPage = () => {
 
     const errorMessage = error ? <ErrorMessage/> : null;
     const spinner = loading ? <Spinner/> : null;
-    const content = !(loading || error || !comic) ? <View comic={comic} /> : null;
+    const content = !(loading || error || !comic) ? <View comic={comic}/> : null;
 
     return (
         <>
@@ -44,7 +42,7 @@ const SingleComicPage = () => {
 
 const View = ({comic}) => {
     const {title, description, pageCount, thumbnail, language, price} = comic;
-    
+
     return (
         <div className="single-comic">
             <img src={thumbnail} alt={title} className="single-comic__img"/>
@@ -57,7 +55,7 @@ const View = ({comic}) => {
             </div>
             <Link to="/comics" className="single-comic__back">Back to all</Link>
         </div>
-    );
+    )
 }
 
-export default SingleComicPage;
+export default SingleComicLayout;
